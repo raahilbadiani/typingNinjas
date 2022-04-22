@@ -1,5 +1,6 @@
 const ParagraphDiv = document.querySelector('.paragraph');
 const Text = 'The quick brown fox jumps over the lazy dog';
+const TypedText = document.querySelector('.tmp');
 
 for (let i = 0; i < Text.length; i++) {
     let letter = document.createElement('letter');
@@ -22,3 +23,9 @@ setInterval(() => {
     Text1[i].classList.add('cursor');
     i++;
 }, 300);
+
+document.onkeydown = (e)=>{
+    TypedText.innerText = TypedText.innerText+e.key;
+    if(e.key == ' ') TypedText.innerHTML += '&nbsp' 
+    console.log(e)
+}

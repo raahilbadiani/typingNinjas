@@ -12,6 +12,7 @@ body{
     min-height: 100vh;
     margin: 0;
     background-color: hsl(208, 36%, 9%);
+    color: white;
     /* padding: 1em; */
     /* font-size: clamp(.5rem,2.5vmin,1.5rem); */
 }
