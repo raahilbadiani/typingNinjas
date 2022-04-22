@@ -1,7 +1,8 @@
-const Text = 'The quick brown fox jumps over the lazy dog';
+const Text = fetchParagraph();
 let typedText = '';
 let cursorIdx = 0;
 let details = {};
+let Letters;
 
 function loadParagraph(){
     const ParagraphDiv = document.querySelector('.paragraph');
@@ -14,17 +15,12 @@ function loadParagraph(){
 }
 
 
-loadParagraph();
-
-let Letters = document.querySelectorAll('letter');
-Letters[cursorIdx].classList.add('cursor');
-
 function isPrintableKey(e){
     return (e.key && e.key.length === 1);
 }
 
 function checkCharacter(key){
-    console.log(`${key},${Letters[cursorIdx].innerText}`);
+    // console.log(`${key},${Letters[cursorIdx].innerText}`);
     Letters[cursorIdx].classList.remove('untyped');
     if(Letters[cursorIdx].innerText===key){
         Letters[cursorIdx].classList.add('correct');
@@ -67,6 +63,14 @@ document.onkeydown = function updateCursor(e){
     Letters[cursorIdx].classList.add('cursor'); // add cursor over current character
 }
 
+function run(){
+    loadParagraph();
+
+    Letters = document.querySelectorAll('letter');
+    Letters[cursorIdx].classList.add('cursor');
+}
+
+run();
 // edge cases -> 
 // typo during space
 // typing after end of paragraph

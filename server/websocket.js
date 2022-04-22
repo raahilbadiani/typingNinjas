@@ -2,7 +2,7 @@ const socketio = require('socket.io');
 // server.js does not run again because it is already executed
 const { server} = require("./server.js");
 const { newRoomName } = require('./utils');
-const {Game} = require("./game.js");
+// const {Game} = require("./game.js");
 const assert = require('assert');
 
 const io = socketio(server, {cors:{ origin:'*',}});
