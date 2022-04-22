@@ -33,7 +33,7 @@ body{
 
 .cursor{
     background-color: rgb(94, 224, 126);
-    animation: animate 1.5s linear infinite;
+    /* animation: animate 1.5s linear infinite; */
 }
 
 @keyframes animate {
@@ -84,4 +84,17 @@ body{
     --sat:49%;
     --light:94%;
     border: none;
+}
+.untyped{
+    color: blue;
+}
+.correct{
+    color: white;
+}
+.wrong{
+    color: red;
+}
+.wrong-space{
+    color: red;
+    border-bottom: 1px solid red;
 }
