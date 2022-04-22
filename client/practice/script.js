@@ -1,31 +1,73 @@
-const ParagraphDiv = document.querySelector('.paragraph');
 const Text = 'The quick brown fox jumps over the lazy dog';
-const TypedText = document.querySelector('.tmp');
+let typedText = '';
+let cursorIdx = 0;
+let details = {};
 
-for (let i = 0; i < Text.length; i++) {
-    let letter = document.createElement('letter');
-    letter.innerText = Text[i];
-    letter.style.color = 'blue';
-    ParagraphDiv.append(letter);
-
+function loadParagraph(){
+    const ParagraphDiv = document.querySelector('.paragraph');
+    for (let i = 0; i < Text.length; i++) {
+        let letter = document.createElement('letter');
+        letter.innerText = Text[i];
+        letter.classList.add('untyped');
+        ParagraphDiv.append(letter);
+    }
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+
+loadParagraph();
+
+let Letters = document.querySelectorAll('letter');
+Letters[cursorIdx].classList.add('cursor');
+
+function isPrintableKey(e){
+    return (e.key && e.key.length === 1);
 }
 
-const Text1 = document.getElementsByTagName('letter')
-
-let i = 0;
-setInterval(() => {
-    if(i>0)
-    Text1[i - 1].classList.remove('cursor');
-    Text1[i].classList.add('cursor');
-    i++;
-}, 300);
-
-document.onkeydown = (e)=>{
-    TypedText.innerText = TypedText.innerText+e.key;
-    if(e.key == ' ') TypedText.innerHTML += '&nbsp' 
-    console.log(e)
+function checkCharacter(key){
+    console.log(`${key},${Letters[cursorIdx].innerText}`);
+    Letters[cursorIdx].classList.remove('untyped');
+    if(Letters[cursorIdx].innerText===key){
+        Letters[cursorIdx].classList.add('correct');
+    } else{
+        if(Letters[cursorIdx].innerText==' '){
+            Letters[cursorIdx].classList.add('wrong-space');
+        } else{
+            Letters[cursorIdx].classList.add('wrong');
+        }
+    }
 }
+
+function processCharacter(e){
+    if(e.key=='Backspace'){
+        Letters[cursorIdx-1].classList = 'untyped';
+        typedText = typedText.slice(0,typedText.length-1);
+        return -1;
+    } else if(cursorIdx<Text.length){
+        if(isPrintableKey(e)){
+            // append
+            typedText+=e.key;
+            checkCharacter(e.key);
+            return 1;
+        } else{
+            // check for Backspace
+            return 0;
+        }
+    }
+}
+
+document.onkeydown = function updateCursor(e){
+    let moveForward = processCharacter(e);
+    Letters[cursorIdx]?.classList.remove('cursor'); // remove cursor from previous character
+    if(moveForward>0){
+        cursorIdx++;    
+    } else if(moveForward<0){
+        cursorIdx--;
+    }
+    if(cursorIdx>=Text.length) return;
+    Letters[cursorIdx].classList.add('cursor'); // add cursor over current character
+}
+
+// edge cases -> 
+// typo during space
+// typing after end of paragraph
+// backspacing till the very begining to see if cursor index becomes negative
