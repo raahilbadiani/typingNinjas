@@ -5,12 +5,26 @@
 }
 
 body{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     min-height: 100vh;
-    padding-bottom: 10px; */
-    background-color: blue;
+    padding-bottom: 10px;
+    background-color: hsl(208, 36%, 9%);
+    /* background-image: url('/assets/keyboard.jpeg'); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     /* background-color: hsl(101, 35%, 9%); */
     /* color: white; */
+}
+
+.body{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100vw;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
