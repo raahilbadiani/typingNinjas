@@ -21,22 +21,29 @@ io.on("connection", (sock) => {
     // console.log(`Client Id ${sock.id}`,sock.handshake.query,"connected.");
     sock.roomName = sock.handshake.query.roomName;
     sock.username = sock.handshake.query.username;
+    sock.progress = 0;
     sock.join(sock.roomName);
     console.log(sock.username,sock.roomName);
     
-    function allPlayers(){
-        const clients = io.sockets.adapter.rooms.get(sock.roomName);
-        if(!clients) return;
-        const numClients = clients ? clients.size : 0;
-        // io.to(sock.roomName).emit('new event', 'Updates');
-        console.log(clients);
-        for (const clientId of clients) {
-            const clientSocket = io.sockets.sockets.get(clientId);
-            console.log(clientSocket.username);
-        }
-    }
-    allPlayers();
 
+    sock.on("progress",(progress)=>{
+        sock.progress = progress;
+    })
+    sock.on("list",()=>{
+        let data = {};
+        const clients = io.sockets.adapter.rooms.get(sock.roomName);
+        if(clients){
+            for (const clientId of clients){
+                const clientSocket = io.sockets.sockets.get(clientId);
+                let clientData = {
+                    username:clientSocket.username,
+                    progress:clientSocket.progress,
+                };
+                data[clientId] = clientData; 
+            }
+        }
+        sock.emit("list",data);
+    });
 
     // if (!(sock.roomName in games)) {
     //     // testing purposes

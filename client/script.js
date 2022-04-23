@@ -3,6 +3,7 @@ let typedText = '';
 let cursorIdx = 0;
 let details = {};
 let Letters;
+let progress = 0;
 
 function loadParagraph(){
     const ParagraphDiv = document.querySelector('.paragraph');
@@ -53,6 +54,7 @@ function processCharacter(e){
 
 document.onkeydown = function updateCursor(e){
     let moveForward = processCharacter(e);
+    progress = typedText.length/Text.length*100;
     Letters[cursorIdx]?.classList.remove('cursor'); // remove cursor from previous character
     if(moveForward>0){
         cursorIdx++;    
