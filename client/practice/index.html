@@ -52,71 +52,82 @@
 
 
 
-
-  <div class="paragraph">
+  <div class="analysis">
   </div>
 
-  <div class="tmp" style="font-size: 1.5em;"></div>
+  <div class="paragraph-outer">
+    <div class="paragraph">
+    </div>
+  </div>
 
   <div class="keyboard">
-    <button class="key" data-key="`">`</button>
-    <button class="key" data-key="1">1</button>
-    <button class="key" data-key="2">2</button>
-    <button class="key" data-key="3">3</button>
-    <button class="key" data-key="4">4</button>
-    <button class="key" data-key="5">5</button>
-    <button class="key" data-key="6">6</button>
-    <button class="key" data-key="7">7</button>
-    <button class="key" data-key="8">8</button>
-    <button class="key" data-key="9">9</button>
-    <button class="key" data-key="0">0</button>
-    <button class="key" data-key="-">-</button>
-    <button class="key" data-key="=">=</button>
-    <button class="key large1" data-key="|">Backspace</button>
+    <button class="key" data-key="`" id="keyid-`">`</button>
+    <button class="key" data-key="1" id="keyid-1">1</button>
+    <button class="key" data-key="2" id="keyid-2">2</button>
+    <button class="key" data-key="3" id="keyid-3">3</button>
+    <button class="key" data-key="4" id="keyid-4">4</button>
+    <button class="key" data-key="5" id="keyid-5">5</button>
+    <button class="key" data-key="6" id="keyid-6">6</button>
+    <button class="key" data-key="7" id="keyid-7">7</button>
+    <button class="key" data-key="8" id="keyid-8">8</button>
+    <button class="key" data-key="9" id="keyid-9">9</button>
+    <button class="key" data-key="0" id="keyid-0">0</button>
+    <button class="key" data-key="-" id="keyid--">-</button>
+    <button class="key" data-key="=" id="keyid-=">=</button>
+    <button class="key large1" data-key="|" id="keyid-|">Backspace</button>
 
     <button class="key large">Tab</button>
-    <button class="key focused" data-key="Q">Q</button>
-    <button class="key" data-key="W">W</button>
-    <button class="key" data-key="E">E</button>
-    <button class="key" data-key="R">R</button>
-    <button class="key" data-key="T">T</button>
-    <button class="key" data-key="Y">Y</button>
-    <button class="key" data-key="U">U</button>
-    <button class="key" data-key="I">I</button>
-    <button class="key" data-key="O">O</button>
-    <button class="key" data-key="P">P</button>
-    <button class="key" data-key="{">[</button>
-    <button class="key" data-key="}">]</button>
-    <button class="key large" data-key="|">\</button>
+    <button class="key" data-key="Q" id="keyid-Q">Q</button>
+    <button class="key" data-key="W" id="keyid-W">W</button>
+    <button class="key" data-key="E" id="keyid-E">E</button>
+    <button class="key" data-key="R" id="keyid-R">R</button>
+    <button class="key" data-key="T" id="keyid-T">T</button>
+    <button class="key" data-key="Y" id="keyid-Y">Y</button>
+    <button class="key" data-key="U" id="keyid-U">U</button>
+    <button class="key" data-key="I" id="keyid-I">I</button>
+    <button class="key" data-key="O" id="keyid-O">O</button>
+    <button class="key" data-key="P" id="keyid-P">P</button>
+    <button class="key" data-key="{" id="keyid-{">[</button>
+    <button class="key" data-key="}" id="keyid-}">]</button>
+    <button class="key large" data-key="|" id="keyid-|">\</button>
 
     <!-- <div class="space"></div> -->
     <button class="key large1">Caps</button>
-    <button class="key" data-key="A">A</button>
-    <button class="key" data-key="S">S</button>
-    <button class="key" data-key="D">D</button>
-    <button class="key" data-key="F"><u>F</u></button>
-    <button class="key" data-key="G">G</button>
-    <button class="key" data-key="H">H</button>
-    <button class="key" data-key="J"><u>J</u></button>
-    <button class="key" data-key="K">K</button>
-    <button class="key" data-key="L">L</button>
-    <button class="key" data-key=":">:</button>
-    <button class="key" data-key="'">'</button>
+    <button class="key" data-key="A" id="keyid-A">A</button>
+    <button class="key" data-key="S" id="keyid-S">S</button>
+    <button class="key" data-key="D" id="keyid-D">D</button>
+    <button class="key" data-key="F" id="keyid-F"><u>F</u></button>
+    <button class="key" data-key="G" id="keyid-G">G</button>
+    <button class="key" data-key="H" id="keyid-H">H</button>
+    <button class="key" data-key="J" id="keyid-J"><u>J</u></button>
+    <button class="key" data-key="K" id="keyid-K">K</button>
+    <button class="key" data-key="L" id="keyid-L">L</button>
+    <button class="key" data-key=":" id="keyid-:">:</button>
+    <button class="key" data-key="'" id="keyid-'">'</button>
     <button class="key large1">Enter</button>
     <button class="key large2">Shift</button>
-    <button class="key" data-key="Z">Z</button>
-    <button class="key" data-key="X">X</button>
-    <button class="key" data-key="C">C</button>
-    <button class="key" data-key="V">V</button>
-    <button class="key" data-key="B">B</button>
-    <button class="key" data-key="N">N</button>
-    <button class="key" data-key="M">M</button>
-    <button class="key" data-key=",">,</button>
-    <button class="key" data-key=".">.</button>
-    <button class="key" data-key="/">/</button>
+    <button class="key" data-key="Z" id="keyid-Z">Z</button>
+    <button class="key" data-key="X" id="keyid-X">X</button>
+    <button class="key" data-key="C" id="keyid-C">C</button>
+    <button class="key" data-key="V" id="keyid-V">V</button>
+    <button class="key" data-key="B" id="keyid-B">B</button>
+    <button class="key" data-key="N" id="keyid-N">N</button>
+    <button class="key" data-key="M" id="keyid-M">M</button>
+    <button class="key" data-key="," id="keyid-comma">,</button>
+    <button class="key" data-key="." id="keyid-dot">.</button>
+    <button class="key" data-key="/" id="keyid-slash">/</button>
     <button class="key large2">Shift</button>
-    <div class="space"></div>
-    <div class="space"></div>
+
+    <button class="key"></button>
+    <button class="key"></button>
+    <button class="key"></button>
+    <button class="key"></button>
+    <button class="key large3" data-key=" " id="keyid- ">Space</button>
+    <button class="key"></button>
+    <button class="key"></button>
+    <button class="key"></button>
+    <button class="key"></button>
+    
   </div>
     <script src="/paragraph.js"></script>
     <script src="script.js"></script>
