@@ -1,0 +1,2 @@
+run();
+document.onkeydown = updateCursor;

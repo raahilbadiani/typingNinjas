@@ -1,8 +1,8 @@
-const Text = fetchParagraph();
+let Text;
 let typedText = '';
 let cursorIdx = 0;
 let details = {};
-details.correctnessList = new Array(Text.length).fill(0);
+details.correctnessList = 0;
 details.backSpaceCnt = 0;
 details.oldKey;
 let Letters;
@@ -58,7 +58,7 @@ function processCharacter(e){
     }
 }
 
-document.onkeydown = function updateCursor(e){
+function updateCursor(e){
     let moveForward = processCharacter(e);
     progress = typedText.length/Text.length*100;
     Letters[cursorIdx]?.classList.remove('cursor'); // remove cursor from previous character
@@ -91,13 +91,16 @@ function getAccuracy(){
     showAccuracy();
 }
 
-function run(){
-    loadParagraph();
+function run(roomName=""){
+    Text = fetchParagraph(roomName);
+    details.correctnessList = new Array(Text.length).fill(0);
+    loadParagraph(roomName);
     Letters = document.querySelectorAll('letter');
     Letters[cursorIdx].classList.add('cursor');
+    // document.onkeydown = updateCursor;
 }
 
-run();
+
 // edge cases -> 
 // typo during space
 // typing after end of paragraph

@@ -6,7 +6,13 @@ const DATA = [
     `As much money and life as you could want! The two things most human beings would choose above all - the trouble is, humans do have a knack of choosing precisely those things that are worst for them.`,
 ]
 
-function fetchParagraph(){
-    const paragraph = DATA[Math.floor(Math.random() * DATA.length)];
+function fetchParagraph(roomName){
+    let idx =0;
+    if(roomName.length==0){
+        idx = Math.floor(Math.random() * DATA.length);
+    }else{
+        idx = roomName.charCodeAt(0) % DATA.length;
+    }
+    const paragraph = DATA[idx];
     return paragraph;
 }

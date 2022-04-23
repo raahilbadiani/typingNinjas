@@ -2,6 +2,17 @@ let carsDiv = document.querySelector("#cars");
 let carHtmlString = "";
 let players = {};
 
+
+run();
+sock.on("start",()=>{
+    document.onkeydown = updateCursor;
+});
+
+
+
+
+
+
 function getPlayerName(){
     let pname = localStorage.getItem('name');
     if(pname){
