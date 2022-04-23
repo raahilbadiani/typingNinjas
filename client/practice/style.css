@@ -10,11 +10,16 @@ body{
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    margin: 0;
+    padding-bottom: 10px;
     background-color: hsl(208, 36%, 9%);
     color: white;
     /* padding: 1em; */
     /* font-size: clamp(.5rem,2.5vmin,1.5rem); */
+}
+
+.analysis{
+    /* display: none; */
+    font-size: 1.5em;
 }
 
 .keyboard{
@@ -25,7 +30,14 @@ body{
     justify-content: center;
 }
 
+.paragraph-outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .paragraph{
+    width: 90%;
     color: white;
     font-size: 2rem;
     margin: 5px 5px 5px 5px;
@@ -76,6 +88,9 @@ body{
 }
 .key.large2{
     grid-column: span 5;
+}
+.key.large3{
+    grid-column: span 14;
 }
 
 .focused{
