@@ -1,7 +1,7 @@
 const socketio = require('socket.io');
 // server.js does not run again because it is already executed
 const { server} = require("./server.js");
-const { newRoomName } = require('./utils');
+const { newRoomName, getRandomColor } = require('./utils');
 // const {Game} = require("./game.js");
 const assert = require('assert');
 
@@ -22,6 +22,7 @@ io.on("connection", (sock) => {
     sock.roomName = sock.handshake.query.roomName;
     sock.username = sock.handshake.query.username;
     sock.progress = 0;
+    sock.color = getRandomColor();
     sock.join(sock.roomName);
     console.log(sock.username,sock.roomName);
     
@@ -38,6 +39,7 @@ io.on("connection", (sock) => {
                 let clientData = {
                     username:clientSocket.username,
                     progress:clientSocket.progress,
+                    color:clientSocket.color,
                 };
                 data[clientId] = clientData; 
             }
