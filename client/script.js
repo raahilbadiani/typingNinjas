@@ -8,6 +8,13 @@ details.oldKey;
 let Letters;
 let progress = 0;
 
+//
+const checkbox = document.getElementById('checkbox');
+
+checkbox.addEventListener('change', ()=>{
+  document.body.classList.toggle('dark');
+})
+//
 function loadParagraph(){
     const ParagraphDiv = document.querySelector('.paragraph');
     for (let i = 0; i < Text.length; i++) {
@@ -59,6 +66,7 @@ function processCharacter(e){
 }
 
 document.onkeydown = function updateCursor(e){
+    e.preventDefault();
     let moveForward = processCharacter(e);
     progress = typedText.length/Text.length*100;
     Letters[cursorIdx]?.classList.remove('cursor'); // remove cursor from previous character
