@@ -4,14 +4,66 @@
     /* --font-color:hsl(281, 49%, 92%); */
     font-family: monospace;
 }
+:root {
+    --primary-color: lightgrey;
+    --secondary-color: #212121;
+    --tertiary-color: #212121; 
+}
+  body.dark {
+    background-color: #292c35;
+    --tertiary-color: lightgrey;
+  }
+  .checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .label {
+    width: 37px;
+    height: 10px;
+    background-color:#111;
+    display: flex;
+    border-radius:25px;
+    align-items: center;
+    justify-content: space-between;
+    top: 5px;
+    padding: 10px;
+    position: relative;
+    transform: scale(1);
+  }
+  
+  .ball {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+  
+  /*  target the elemenent after the label*/
+  .checkbox:checked + .label .ball{
+    transform: translateX(24px);
+  }
+  
+  .fa-moon {
+    color: pink;
+  }
+  
+  .fa-sun {
+    color: yellow;
+  }
 
-body{
+  body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    padding-bottom: 10px;
-    background-color: hsl(208, 36%, 9%);
+    margin: 0;
+    /* background-color: hsl(208, 36%, 9%); */
+    background-color: var(--primary-color);
     color: white;
     /* padding: 1em; */
     /* font-size: clamp(.5rem,2.5vmin,1.5rem); */
@@ -104,7 +156,7 @@ body{
     color: blue;
 }
 .correct{
-    color: white;
+    color: var(--tertiary-color);
 }
 .wrong{
     color: red;

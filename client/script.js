@@ -3,11 +3,20 @@ let typedText = '';
 let cursorIdx = 0;
 let details = {};
 details.correctnessList = 0;
+details.correctCnt = 0;
+details.incorrectCnt = 0;
 details.backSpaceCnt = 0;
 details.oldKey;
 let Letters;
 let progress = 0;
 
+//
+const checkbox = document.getElementById('checkbox');
+
+checkbox.addEventListener('change', ()=>{
+  document.body.classList.toggle('dark');
+})
+//
 function loadParagraph(){
     const ParagraphDiv = document.querySelector('.paragraph');
     for (let i = 0; i < Text.length; i++) {
@@ -27,10 +36,10 @@ function checkCharacter(key){
     // console.log(`${key},${Letters[cursorIdx].innerText}`);
     Letters[cursorIdx].classList.remove('untyped');
     if(Letters[cursorIdx].innerText===key){
-        details.correctnessList[cursorIdx]=1;
+        details.correctCnt++;
         Letters[cursorIdx].classList.add('correct');
     } else{
-        details.correctnessList[cursorIdx]=-1;
+        details.incorrectCnt++;
         if(Letters[cursorIdx].innerText==' '){
             Letters[cursorIdx].classList.add('wrong-space');
         } else{
@@ -41,9 +50,9 @@ function checkCharacter(key){
 
 function processCharacter(e){
     if(e.key=='Backspace'){
-        Letters[cursorIdx-1].classList = 'untyped';
+        if(cursorIdx<=0)return -1;
+        Letters[cursorIdx-1].classList = 'untyped';        
         typedText = typedText.slice(0,typedText.length-1);
-        details.correctnessList[cursorIdx-1] = 0;
         details.backSpaceCnt++;
         return -1;
     } else if(cursorIdx<Text.length){
@@ -59,12 +68,13 @@ function processCharacter(e){
 }
 
 function updateCursor(e){
+    e.preventDefault();
     let moveForward = processCharacter(e);
     progress = typedText.length/Text.length*100;
     Letters[cursorIdx]?.classList.remove('cursor'); // remove cursor from previous character
     if(moveForward>0){
         cursorIdx++;    
-    } else if(moveForward<0){
+    } else if(moveForward<0 && cursorIdx>0){
         cursorIdx--;
     }
     if(cursorIdx>=Text.length){
@@ -81,13 +91,7 @@ function showAccuracy(){
 
 function getAccuracy(){
     // acc = correct/total = 1- errors/total
-    let sum=0;
-    for(let i=0;i< Text.length;i++){
-        if(details.correctnessList[i]>0){
-            sum++;
-        }
-    }
-    details.accuracy = sum/Text.length;
+    details.accuracy = (details.correctCnt)/(details.correctCnt+details.incorrectCnt);
     showAccuracy();
 }
 

@@ -42,7 +42,7 @@ function addNewCars(){
     for(const key in players){
         let element = document.getElementById(key);
         if(!element){
-            element = getCarHTML(key);
+            element = getCarHTML(key,players[key].color);
             carsDiv.appendChild(element);
         }
         players[key].element = element;
