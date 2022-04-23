@@ -10,8 +10,6 @@ router.get('/create', (req,res)=>{
     while (io.sockets.adapter.rooms.has(roomName = nanoid(4))){
         console.log("collided ",roomName);
     }
-    // games[roomName] = new Game(roomName);
-    // games[roomName].run();
     res.redirect(`${roomName}`);
 })
 router.get('/allrooms',(req,res)=>{

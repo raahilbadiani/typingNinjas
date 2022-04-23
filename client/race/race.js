@@ -1,14 +1,16 @@
 let carsDiv = document.querySelector("#cars");
 let carHtmlString = "";
 let players = {};
+let startButton = document.querySelector("#start");
+let startParent = document.querySelector("#start-parent");
+let countSec = 4;
 
+run(roomName);
 
-run();
-sock.on("start",()=>{
-    document.onkeydown = updateCursor;
-});
-
-
+function handleClick(e){
+    sock.emit("start");
+}
+startButton.addEventListener('click',handleClick);
 
 
 
@@ -25,11 +27,32 @@ let sock = io({query:{roomName:roomName,username:getPlayerName()}});
 
 let listInterval = setInterval(() => {
     sock.emit("list");
-}, 1000);
+}, 300);
 
 let progressInterval = setInterval(() => {
     sock.emit("progress",progress);
 }, 1000);
+
+function countDown(){
+    setTimeout(() => {
+        countSec -= 1;
+        startButton.innerText = countSec;
+
+        if(countSec>0) countDown();
+        else{
+            document.onkeydown = updateCursor;
+            startButton.innerText = "GO!"
+            setTimeout(() => {
+                startButton.remove();
+            }, 2000);
+        }
+    }, 1000);
+}
+
+sock.on("start",()=>{
+    startButton.removeEventListener('click',handleClick);
+    countDown();
+});
 
 sock.on("list",(data)=>{
     players = data;
@@ -55,7 +78,6 @@ function cleanUpDeadCars(){
         if(car.id in players){}
         else{
             car.remove();
-            delete players[key];
         }
     }
 }

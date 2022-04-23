@@ -7,9 +7,12 @@ details.correctCnt = 0;
 details.incorrectCnt = 0;
 details.backSpaceCnt = 0;
 details.oldKey;
+details.wpm = 0;
 let Letters;
 let progress = 0;
-
+let maxTime = 120;
+let timer = new Stopwatch(maxTime);
+let analysisDiv = document.querySelector('.analysis');
 //
 const checkbox = document.getElementById('checkbox');
 
@@ -48,7 +51,13 @@ function checkCharacter(key){
     }
 }
 
-function processCharacter(e){
+/**
+ * Three cases:
+ * move cursor +1 for printable character
+ * move cursor -1 for Backspace
+ * don't move cursor for modifier keys like Shift, Ctrl
+ */
+function shouldMoveForward(e){
     if(e.key=='Backspace'){
         if(cursorIdx<=0)return -1;
         Letters[cursorIdx-1].classList = 'untyped';        
@@ -68,31 +77,37 @@ function processCharacter(e){
 }
 
 function updateCursor(e){
-    e.preventDefault();
-    let moveForward = processCharacter(e);
-    progress = typedText.length/Text.length*100;
+    if(e.key==' ') e.preventDefault(); // Prevent unwanted clicks while typing the paragraph
+
+    let moveForward = shouldMoveForward(e);
+    progress = details.correctCnt/Text.length*100;
     Letters[cursorIdx]?.classList.remove('cursor'); // remove cursor from previous character
     if(moveForward>0){
         cursorIdx++;    
-    } else if(moveForward<0 && cursorIdx>0){
+    } else if(moveForward<0 && cursorIdx>0){ // handle edge case when cursor is at beginning
         cursorIdx--;
     }
-    if(cursorIdx>=Text.length){
-        getAccuracy();
+    if(cursorIdx>=Text.length){ // handle edge case when cursor is at the end
+        timer.stop();
         return;
     }
     Letters[cursorIdx].classList.add('cursor'); // add cursor over current character
 }
 
-function showAccuracy(){
-    let analysisDiv = document.querySelector('.analysis');
-    analysisDiv.innerText = 'Accuracy: '+((details.accuracy*100).toFixed(2));
-}
 
-function getAccuracy(){
-    // acc = correct/total = 1- errors/total
+
+function showAnalysis(){
+    // Start the timer on first keypress
+    if(!timer.isRunning) timer.start();
+
+    // Calculate the speed in WPM and accuracy percentage
+    details.wpm = details.correctCnt/timer.getMilliseconds()*60000/5;
     details.accuracy = (details.correctCnt)/(details.correctCnt+details.incorrectCnt);
-    showAccuracy();
+
+    // Display statistics on screen
+    analysisDiv.innerText = '';
+    analysisDiv.innerText += 'Accuracy: '+((details.accuracy*100).toFixed(2));
+    analysisDiv.innerText += '\tWPM: '+ details.wpm.toFixed(0);
 }
 
 function run(roomName=""){
@@ -101,7 +116,9 @@ function run(roomName=""){
     loadParagraph(roomName);
     Letters = document.querySelectorAll('letter');
     Letters[cursorIdx].classList.add('cursor');
-    // document.onkeydown = updateCursor;
+    let analysisInterval = setInterval(() => {
+        showAnalysis();
+    }, 1000);
 }
 
 
