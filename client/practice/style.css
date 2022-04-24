@@ -5,13 +5,14 @@
     font-family: monospace;
 }
 :root {
-    --primary-color: lightgrey;
-    --secondary-color: #212121;
-    --tertiary-color: #212121; 
+    --primary-color: #292c35;
+    --secondary-color: lightgrey;
+    --tertiary-color: white;
 }
-  body.dark {
-    background-color: #292c35;
-    --tertiary-color: lightgrey;
+  body.light {
+    background-color: lightgrey;
+    --tertiary-color: black;
+    color: black;
   }
   .checkbox {
     opacity: 0;
@@ -19,7 +20,7 @@
   }
   
   .label {
-    width: 37px;
+    width: 40px;
     height: 10px;
     background-color:#111;
     display: flex;
@@ -33,11 +34,11 @@
   }
   
   .ball {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     background-color: white;
     position: absolute;
-    top: 5px;
+    top: 2px;
     left: 0px;
     border-radius: 50%;
     transition: transform 0.2s linear;

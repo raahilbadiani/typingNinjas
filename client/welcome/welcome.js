@@ -1,6 +1,13 @@
 
 let roomList = [];
 fetchRoomList();
+
+// handle dark mode
+const checkbox = document.getElementById('checkbox');
+checkbox.addEventListener('change', ()=>{
+  document.body.classList.toggle('light');
+})
+
 async function fetchRoomList(){
     const response = await fetch("/room/allrooms");
     const data = await response.json();

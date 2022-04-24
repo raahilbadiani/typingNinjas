@@ -6,7 +6,7 @@ class Stopwatch {
         this.maxTime = maxTime;
     }
     getMilliseconds(){
-        let elapsed = (this.isRunning ? Date.now()-this.starttime : 0) + this.timespent;
+        let elapsed = this.isRunning ? Date.now()-this.starttime :  this.timespent;
         return elapsed;
     }
     toggle(){

@@ -85,7 +85,7 @@ function cleanUpDeadCars(){
 
 function moveCars(){
     for(const key in players){
-        console.log(key,players[key].progress);
+        // console.log(key,players[key].progress);
         let car = players[key].element.children[0];
         car.style = `margin-left: ${players[key].progress}%;`;
     }

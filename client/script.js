@@ -11,15 +11,16 @@ details.wpm = 0;
 let Letters;
 let progress = 0;
 let maxTime = 120;
+let analysisInterval;
 let timer = new Stopwatch(maxTime);
 let analysisDiv = document.querySelector('.analysis');
-//
-const checkbox = document.getElementById('checkbox');
 
+// toogle to light theme
+const checkbox = document.getElementById('checkbox');
 checkbox.addEventListener('change', ()=>{
-  document.body.classList.toggle('dark');
+  document.body.classList.toggle('light');
 })
-//
+
 function loadParagraph(){
     const ParagraphDiv = document.querySelector('.paragraph');
     for (let i = 0; i < Text.length; i++) {
@@ -88,6 +89,7 @@ function updateCursor(e){
         cursorIdx--;
     }
     if(cursorIdx>=Text.length){ // handle edge case when cursor is at the end
+        clearInterval(analysisInterval);
         timer.stop();
         return;
     }
@@ -116,7 +118,7 @@ function run(roomName=""){
     loadParagraph(roomName);
     Letters = document.querySelectorAll('letter');
     Letters[cursorIdx].classList.add('cursor');
-    let analysisInterval = setInterval(() => {
+    analysisInterval = setInterval(() => {
         showAnalysis();
     }, 1000);
 }
