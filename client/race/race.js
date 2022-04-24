@@ -4,6 +4,8 @@ let players = {};
 let startButton = document.querySelector("#start");
 let startParent = document.querySelector("#start-parent");
 let countSec = 4;
+let nameCloseBtn = document.querySelector('#name-close-btn');
+let nameText = document.querySelector('#name-input');
 
 run(roomName);
 
@@ -12,6 +14,10 @@ function handleClick(e){
 }
 startButton.addEventListener('click',handleClick);
 
+//grab the name
+nameCloseBtn.addEventListener('click',()=>{
+    localStorage.setItem('name',nameText.value);
+})
 
 
 

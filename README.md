@@ -1,5 +1,7 @@
-#  <img src="./client/assets/favicon.ico" width="32" /> <a href="http://real-soccer.herokuapp.com/">Typing Ninjas</a>
+#  <img src="./client/assets/favicon.ico" width="32" /> <a href="http://typing-ninjas.herokuapp.com/">Typing Ninjas</a>
 ---
+
+## Live hosted on - https://typing-ninjas.herokuapp.com
 
 ### Features
 ---

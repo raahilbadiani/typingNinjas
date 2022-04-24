@@ -22,10 +22,15 @@ router.get('/allrooms',(req,res)=>{
     res.json(roomList);
 })
 router.get('/joinany',(req,res)=>{
+    console.log('looking for a room')
     for(let [key,value] of io.sockets.adapter.rooms){
-        if(key.length==4)
+        if(key.length==4){
+            console.log('foudn a  room joing it!');
             res.redirect(`${key}`);
+            return;
+        }
     }
+    console.log('didnt find a room ! creating one');
     res.redirect('/room/create');
 })
 router.get('/',(req,res)=>{
