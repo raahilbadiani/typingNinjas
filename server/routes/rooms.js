@@ -21,6 +21,13 @@ router.get('/allrooms',(req,res)=>{
     }
     res.json(roomList);
 })
+router.get('/joinany',(req,res)=>{
+    for(let [key,value] of io.sockets.adapter.rooms){
+        if(key.length==4)
+            res.redirect(`${key}`);
+    }
+    res.redirect('/room/create');
+})
 router.get('/',(req,res)=>{
     console.log('[+] get rooms')
     res.send('hi')
