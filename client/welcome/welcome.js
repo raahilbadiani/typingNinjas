@@ -1,11 +1,18 @@
 
 let roomList = [];
+let nameCloseBtn = document.querySelector('#name-close-btn');
+let nameText = document.querySelector('#name-input');
 fetchRoomList();
 
 // handle dark mode
 const checkbox = document.getElementById('checkbox');
 checkbox.addEventListener('change', ()=>{
   document.body.classList.toggle('light');
+})
+
+//grab the name
+nameCloseBtn.addEventListener('click',()=>{
+    localStorage.setItem('name',nameText.value);
 })
 
 async function fetchRoomList(){

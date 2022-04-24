@@ -6,6 +6,7 @@ details.correctnessList = 0;
 details.correctCnt = 0;
 details.incorrectCnt = 0;
 details.backSpaceCnt = 0;
+details.accuracy = 0;
 details.oldKey;
 details.wpm = 0;
 let Letters;
@@ -98,13 +99,16 @@ function updateCursor(e){
 
 
 
+
 function showAnalysis(){
     // Start the timer on first keypress
     if(!timer.isRunning) timer.start();
 
     // Calculate the speed in WPM and accuracy percentage
     details.wpm = details.correctCnt/timer.getMilliseconds()*60000/5;
-    details.accuracy = (details.correctCnt)/(details.correctCnt+details.incorrectCnt);
+    if(details.correctCnt+details.incorrectCnt > 0){ // avoid division by 0
+        details.accuracy = (details.correctCnt)/(details.correctCnt+details.incorrectCnt);
+    }
 
     // Display statistics on screen
     analysisDiv.innerText = '';

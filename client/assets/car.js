@@ -1,6 +1,7 @@
 function getCarHTML(id,color="#ED6951"){
     let carHtml = `<div class="car-div" id=${id} style="width: 80%; border-bottom: 1px solid black; border-right: 1px dashed black"><div>
-        <div class="car" style="height: 50px; width: 50px;">
+    <p>${players[id].username}</p>    
+    <div class="car" style="height: 50px; width: 50px;">
             <?xml version="1.0" encoding="iso-8859-1"?>
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
