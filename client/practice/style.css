@@ -81,6 +81,7 @@
     grid-auto-rows: 3em;
     gap: .25em;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .paragraph-outer{
